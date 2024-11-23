@@ -15,6 +15,12 @@ run/main_scene="res://Scenes/Game Scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=576
+window/size/viewport_height=324
+window/stretch/mode="viewport"
+
 [dotnet]
 
 project/assembly_name="You Are Your Own Enemy"

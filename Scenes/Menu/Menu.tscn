@@ -13,10 +13,10 @@ script = ExtResource("1_fgq37")
 
 [node name="Start" type="Button" parent="."]
 layout_mode = 0
-offset_left = 323.0
-offset_top = 344.0
-offset_right = 745.0
-offset_bottom = 408.0
+offset_left = 86.0
+offset_top = 120.0
+offset_right = 508.0
+offset_bottom = 184.0
 text = "START"
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
