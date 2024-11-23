@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://brllde5jousbu"]
+
+[ext_resource type="Script" path="res://Scenes/Enemy/Bat/Bat.gd" id="1_kofug"]
+[ext_resource type="Texture2D" uid="uid://dfjiv8n7vunfd" path="res://icon.svg" id="2_qbvdd"]
+[ext_resource type="Script" path="res://Systems/HitHurtSystem/Hurtbox.gd" id="3_34op8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gmc0n"]
+size = Vector2(4, 4)
+
+[node name="Bat" type="CharacterBody2D"]
+script = ExtResource("1_kofug")
+health = 3
+speed = 15.0
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_qbvdd")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("3_34op8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_gmc0n")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

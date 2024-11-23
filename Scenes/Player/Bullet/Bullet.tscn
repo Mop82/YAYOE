@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlm1d8pjcmwg4"]
+
+[ext_resource type="Script" path="res://Scenes/Player/Bullet/Bullet.gd" id="1_0u4bc"]
+[ext_resource type="Texture2D" uid="uid://dfjiv8n7vunfd" path="res://icon.svg" id="1_peic3"]
+[ext_resource type="Script" path="res://Systems/HitHurtSystem/Hitbox.gd" id="3_j2yty"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_734rm"]
+size = Vector2(4, 4)
+
+[node name="Bullet" type="CharacterBody2D"]
+script = ExtResource("1_0u4bc")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("1_peic3")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("3_j2yty")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_734rm")
