@@ -20,13 +20,14 @@ texture = ExtResource("2_0ainb")
 
 [node name="Enemy" type="Node2D" parent="."]
 visible = false
-rotation = 0.0988321
+rotation = -0.158763
 
 [node name="Enemy" type="Sprite2D" parent="Enemy"]
 texture_filter = 1
 texture = ExtResource("3_vrh2w")
 
 [node name="Boss" type="Node2D" parent="."]
+rotation = -0.158763
 
 [node name="Boss" type="Sprite2D" parent="Boss"]
 texture_filter = 1
