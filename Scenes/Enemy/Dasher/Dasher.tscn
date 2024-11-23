@@ -1,3 +1,18 @@
-[gd_scene format=3 uid="uid://crpmhwwc3l0b3"]
+[gd_scene load_steps=3 format=3 uid="uid://crpmhwwc3l0b3"]
+
+[ext_resource type="Script" path="res://Scenes/Enemy/Dasher/dasher.gd" id="1_wfl06"]
+[ext_resource type="Texture2D" uid="uid://dfjiv8n7vunfd" path="res://icon.svg" id="2_16rey"]
 
 [node name="Dasher" type="CharacterBody2D"]
+script = ExtResource("1_wfl06")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_16rey")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
