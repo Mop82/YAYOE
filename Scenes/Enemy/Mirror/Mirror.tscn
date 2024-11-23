@@ -1,3 +1,12 @@
-[gd_scene format=3 uid="uid://m303mstp0jly"]
+[gd_scene load_steps=3 format=3 uid="uid://m303mstp0jly"]
+
+[ext_resource type="Script" path="res://Scenes/Enemy/Mirror/Mirror.gd" id="1_36xp5"]
+[ext_resource type="Texture2D" uid="uid://dfjiv8n7vunfd" path="res://icon.svg" id="2_k41f4"]
 
 [node name="Mirror" type="CharacterBody2D"]
+script = ExtResource("1_36xp5")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(0, 3.8147e-06)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("2_k41f4")

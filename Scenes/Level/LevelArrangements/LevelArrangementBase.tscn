@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Level/LevelArrangements/LevelArrangementBase.gd" id="1_28b7k"]
 [ext_resource type="Texture2D" uid="uid://cgcb6tuy7xq48" path="res://Assets/Tiles/Checker.png" id="1_bgrdu"]
 [ext_resource type="PackedScene" uid="uid://d3imsyijosk0k" path="res://Systems/EnemySpawner/EnemySpawner.tscn" id="3_ugwwa"]
-[ext_resource type="PackedScene" uid="uid://crpmhwwc3l0b3" path="res://Scenes/Enemy/Dasher/Dasher.tscn" id="4_3uxgt"]
+[ext_resource type="PackedScene" uid="uid://m303mstp0jly" path="res://Scenes/Enemy/Mirror/Mirror.tscn" id="4_6ohop"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_niwnj"]
 texture = ExtResource("1_bgrdu")
@@ -40,5 +40,5 @@ tile_set = SubResource("TileSet_u1nuj")
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="EnemySpawner" parent="Enemies" instance=ExtResource("3_ugwwa")]
-position = Vector2(-4, -28)
-spawn_item = ExtResource("4_3uxgt")
+position = Vector2(-4, -36)
+spawn_item = ExtResource("4_6ohop")
