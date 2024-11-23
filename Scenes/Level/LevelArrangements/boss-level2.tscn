@@ -93,31 +93,31 @@ spawn_item = ExtResource("5_gyrbd")
 type = 1
 
 [node name="down 5" parent="Enemies" instance=ExtResource("3_bis8y")]
-position = Vector2(-4, 44)
+position = Vector2(-4, 52)
 spawn_item = ExtResource("5_gyrbd")
 type = 1
 
 [node name="down 6" parent="Enemies" instance=ExtResource("3_bis8y")]
-position = Vector2(20, 20)
+position = Vector2(12, 4)
 spawn_item = ExtResource("5_gyrbd")
 type = 1
 
 [node name="down 7" parent="Enemies" instance=ExtResource("3_bis8y")]
-position = Vector2(20, 20)
+position = Vector2(28, 20)
 spawn_item = ExtResource("5_gyrbd")
 type = 1
 
 [node name="down 8" parent="Enemies" instance=ExtResource("3_bis8y")]
-position = Vector2(20, 20)
+position = Vector2(-44, 52)
 spawn_item = ExtResource("5_gyrbd")
 type = 1
 
 [node name="down 9" parent="Enemies" instance=ExtResource("3_bis8y")]
-position = Vector2(20, 20)
+position = Vector2(20, -4)
 spawn_item = ExtResource("5_gyrbd")
 type = 1
 
 [node name="down 10" parent="Enemies" instance=ExtResource("3_bis8y")]
-position = Vector2(20, 20)
+position = Vector2(-28, -20)
 spawn_item = ExtResource("5_gyrbd")
 type = 1
