@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://m303mstp0jly"]
+
+[node name="Mirror" type="CharacterBody2D"]
