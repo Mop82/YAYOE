@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://crpmhwwc3l0b3"]
+[gd_scene load_steps=9 format=3 uid="uid://crpmhwwc3l0b3"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Dasher/dasher.gd" id="1_wfl06"]
 [ext_resource type="Texture2D" uid="uid://m864rt0y28gt" path="res://Assets/Art/Skull.png" id="2_u3hxa"]
 [ext_resource type="Script" path="res://Systems/HitHurtSystem/Hurtbox.gd" id="3_it12a"]
 [ext_resource type="Script" path="res://Systems/HitHurtSystem/Hitbox.gd" id="4_4874w"]
+[ext_resource type="AudioStream" uid="uid://ddbtd54c6ovvt" path="res://Assets/SFX/sfxnormal/hitHurt.wav" id="5_0bdh5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ygipc"]
 size = Vector2(8, 8)
@@ -15,7 +16,7 @@ size = Vector2(6, 6)
 size = Vector2(8, 8)
 
 [node name="Dasher" type="CharacterBody2D"]
-collision_layer = 0
+collision_layer = 16
 script = ExtResource("1_wfl06")
 health = 6
 speed = 6.0
@@ -45,6 +46,12 @@ script = ExtResource("4_4874w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("RectangleShape2D_7puss")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("5_0bdh5")
+pitch_scale = 2.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

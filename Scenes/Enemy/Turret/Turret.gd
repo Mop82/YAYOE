@@ -23,6 +23,14 @@ func shoot():
 	bullet.look_at(player.global_position)
 	bullet.global_position = global_position
 
+func damage_anim():
+	var bloodstain = preload("res://Scenes/FX/bloodstain.tscn").instantiate()
+	get_parent().get_parent().add_child(bloodstain)
+	bloodstain.global_position = global_position
+	var scale_ = randf_range(1.6, 2)
+	bloodstain.scale = Vector2(scale_, scale_)
+	$SFX/Hurt.pitch_scale = randf_range(1.5, 2.5)
+	$SFX/Hurt.play()
 
 func _on_timer_timeout() -> void:
 	shake = true

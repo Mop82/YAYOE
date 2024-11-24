@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://brllde5jousbu"]
+[gd_scene load_steps=8 format=3 uid="uid://brllde5jousbu"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Bat/Bat.gd" id="1_kofug"]
 [ext_resource type="Texture2D" uid="uid://dovyxnge7u710" path="res://Assets/Art/Bat.png" id="2_t7dbt"]
 [ext_resource type="Script" path="res://Systems/HitHurtSystem/Hurtbox.gd" id="3_34op8"]
 [ext_resource type="Script" path="res://Systems/HitHurtSystem/Hitbox.gd" id="4_h8j4b"]
+[ext_resource type="AudioStream" uid="uid://ddbtd54c6ovvt" path="res://Assets/SFX/sfxnormal/hitHurt.wav" id="5_8rtj8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmc0n"]
 size = Vector2(8, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2bhr"]
+size = Vector2(6, 6)
+
 [node name="Bat" type="CharacterBody2D"]
+collision_layer = 16
 script = ExtResource("1_kofug")
 health = 3
 speed = 15.0
@@ -33,5 +38,14 @@ script = ExtResource("4_h8j4b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("RectangleShape2D_gmc0n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l2bhr")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("5_8rtj8")
+pitch_scale = 2.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

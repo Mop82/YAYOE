@@ -1,0 +1,82 @@
+[gd_scene load_steps=13 format=3 uid="uid://celx54r667yun"]
+
+[ext_resource type="Texture2D" uid="uid://dyww7lgirxd33" path="res://Assets/Art/dusteffect.png" id="1_4n3bn"]
+[ext_resource type="Script" path="res://Scenes/FX/bloodstain.gd" id="1_ql0eh"]
+
+[sub_resource type="Gradient" id="Gradient_ivk81"]
+offsets = PackedFloat32Array(0.216667, 0.45, 1)
+colors = PackedColorArray(0.908511, 0.36839, 0.719183, 1, 0.561377, 0.324597, 0.744422, 1, 0.226428, 0.103267, 0.317597, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_h4hwl"]
+gradient = SubResource("Gradient_ivk81")
+
+[sub_resource type="Curve" id="Curve_023m6"]
+_data = [Vector2(0, 0.769231), 0.0, 0.0, 0, 0, Vector2(0.216216, 0.934066), 0.0, 0.0, 0, 0, Vector2(0.722973, 0.692308), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_tjewv"]
+curve = SubResource("Curve_023m6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lmlqt"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 7.0
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_curve = SubResource("CurveTexture_tjewv")
+color_ramp = SubResource("GradientTexture1D_h4hwl")
+
+[sub_resource type="Curve" id="Curve_ev7no"]
+_data = [Vector2(0, 0.153846), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_bcfs3"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_3ifil"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_bnqlt"]
+curve_x = SubResource("Curve_ev7no")
+curve_y = SubResource("Curve_bcfs3")
+curve_z = SubResource("Curve_3ifil")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f40q3"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 15.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 2.0
+scale_curve = SubResource("CurveXYZTexture_bnqlt")
+color_ramp = SubResource("GradientTexture1D_h4hwl")
+
+[node name="Bloodstain" type="Node2D"]
+visibility_layer = 2
+z_index = -1
+script = ExtResource("1_ql0eh")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+texture_filter = 1
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_lmlqt")
+texture = ExtResource("1_4n3bn")
+lifetime = 10.0
+one_shot = true
+explosiveness = 1.0
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+texture_filter = 1
+emitting = false
+amount = 5
+process_material = SubResource("ParticleProcessMaterial_f40q3")
+texture = ExtResource("1_4n3bn")
+one_shot = true
+speed_scale = 4.0
+explosiveness = 1.0

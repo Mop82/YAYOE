@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvuxuuxel5o2i"]
+
+[ext_resource type="Script" path="res://Systems/HitHurtSystem/Hitbox.gd" id="1_gqj7w"]
+[ext_resource type="Texture2D" uid="uid://c1jy6ntp73lvu" path="res://Assets/Art/Purpleitem.png" id="1_mrwpc"]
+[ext_resource type="Shader" path="res://Scenes/Menu/wavy.gdshader" id="2_v2gjj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ktnq2"]
+shader = ExtResource("2_v2gjj")
+shader_parameter/waveAmplitude = 0.5
+shader_parameter/correctVertex = true
+shader_parameter/waveFrequency = 6.0
+shader_parameter/verticalWave = true
+shader_parameter/keepTransparency = true
+shader_parameter/useTime = true
+shader_parameter/waveSpeed = 4.0
+shader_parameter/progress = 0.0
+shader_parameter/firstHalf = 0.5
+shader_parameter/secondHalf = 0.5
+shader_parameter/freezeFirstHalf = false
+shader_parameter/freezeSecondHalf = false
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hdej1"]
+
+[node name="Heal" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_gqj7w")
+damage = -1
+healer = true
+
+[node name="Purpleitem" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ktnq2")
+texture = ExtResource("1_mrwpc")
+
+[node name="Purpleitem2" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ktnq2")
+rotation = 2.10633
+texture = ExtResource("1_mrwpc")
+
+[node name="Purpleitem3" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ktnq2")
+rotation = 1.58278
+texture = ExtResource("1_mrwpc")
+
+[node name="Purpleitem4" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ktnq2")
+rotation = 3.68911
+texture = ExtResource("1_mrwpc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hdej1")

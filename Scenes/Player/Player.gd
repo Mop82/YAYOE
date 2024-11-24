@@ -16,6 +16,7 @@ var can_shoot = true
 
 @onready var gun = $Gun
 @onready var gun_tip = $Gun/GunTip
+@onready var main_cam = get_tree().get_first_node_in_group("MainCamera")
 
 var health = 10
 var heat = 0
@@ -27,12 +28,20 @@ var rifle_shoot = false
 
 func _ready() -> void:
 	target_position = global_position
+	
 
 func _physics_process(delta: float) -> void:
+	
+	if dead:
+		return
+	
 	$Health.value = health
 	$heat.value = heat
 	
 	time += delta
+	
+	if Input.is_action_just_pressed("escape"):
+		get_tree().get_first_node_in_group("Game").reset_menu()
 	
 	$Icon.rotation_degrees = sin(time * 2) * 10
 	movement(delta)
@@ -123,6 +132,7 @@ func shoot():
 		
 		get_parent().add_child(bullet)
 	
+	
 	await get_tree().create_timer(shoot_cooldown).timeout
 	
 	can_shoot = true
@@ -139,7 +149,17 @@ func rifle():
 	
 	heat += 0.5
 	
+	if can_shoot:
+		$SFX/Rifle.play()
+		$SFX/Rifle.pitch_scale = randf_range(1.9, 2.4)
+	
 	shoot()
+	
+	main_cam.apply_shake(0.01)
+	
+	$Gun/Gunflash.show()
+	await get_tree().create_timer(0.1).timeout
+	$Gun/Gunflash.hide()
 
 func shotgun():
 	
@@ -152,14 +172,70 @@ func shotgun():
 	
 	heat += 2
 	
+	if can_shoot:
+		$SFX/Rifle.play()
+		$SFX/Rifle.pitch_scale = randf_range(0.9, 1.4)
+	
 	shoot()
 	
+	main_cam.apply_shake(0.1)
+	
+	$Gun/Gunflash.show()
+	await get_tree().create_timer(0.1).timeout
+	$Gun/Gunflash.hide()
+	
+
+var damage_cooldown = false
+var invinc_time = 0.5
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:
-	take_damage(area.damage)
+	take_damage(area.damage, area)
 
-func take_damage(damage):
+var dead = false
+
+func death():
+	var explosion = preload("res://Scenes/FX/explode.tscn").instantiate()
+	get_parent().add_child(explosion)
+	explosion.global_position = global_position
+	explosion.scale = Vector2(5, 5)
+	$Icon.hide()
+	$Gun.hide()
+	$SFX/Death.play()
+	dead = true
+	await get_tree().create_timer(5).timeout
+	get_tree().get_first_node_in_group("Game").reset_menu()
+
+func take_damage(damage, healer):
+	if damage_cooldown or dead:
+		return
+	
+	if healer.healer:
+		healer.queue_free()
+		var magic_dust = preload("res://Scenes/FX/Sparkly.tscn").instantiate()
+		magic_dust.global_position = global_position
+		get_parent().add_child(magic_dust)
+		$SFX/Heal.play()
+	else:
+		$SFX/Damage.pitch_scale = randf_range(0.5, 0.7)
+		$SFX/Damage.play()
+	
+	main_cam.apply_shake(0.2)
+	
+	damage_cooldown = true
 	health -= damage
+	
+	var bloodstain = preload("res://Scenes/FX/bloodstain.tscn").instantiate()
+	get_parent().add_child(bloodstain)
+	bloodstain.global_position = global_position
+	var scale_ = randf_range(0.8, 1.2)
+	bloodstain.scale = Vector2(scale_, scale_)
+	
+	if health < 0:
+		death()
+	
+	await get_tree().create_timer(invinc_time)
+	
+	damage_cooldown = false
 
 func _on_heatdown_timeout() -> void:
 	heat -= 5

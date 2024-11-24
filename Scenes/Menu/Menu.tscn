@@ -1,6 +1,43 @@
-[gd_scene load_steps=2 format=3 uid="uid://cd1oko7s43fta"]
+[gd_scene load_steps=9 format=3 uid="uid://cd1oko7s43fta"]
 
 [ext_resource type="Script" path="res://Scenes/Menu/Menu.gd" id="1_fgq37"]
+[ext_resource type="Texture2D" uid="uid://dxhjr1ikrn4v4" path="res://Assets/Tiles/ButtonBack.png" id="2_pcgo6"]
+[ext_resource type="FontFile" uid="uid://c85riiss81f5c" path="res://Assets/Minecraft.ttf" id="2_vmy28"]
+[ext_resource type="Shader" path="res://Scenes/Game Scene.gdshader" id="3_wwqby"]
+[ext_resource type="Shader" path="res://Scenes/Menu/wavy.gdshader" id="5_222jg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ie81"]
+shader = ExtResource("3_wwqby")
+shader_parameter/color_one = Color(0.0631236, 0.0347302, 0.10625, 1)
+shader_parameter/color_two = Color(0.0861586, 0.0520776, 0.137659, 1)
+shader_parameter/angle = 25.0
+shader_parameter/line_count = 500.0
+shader_parameter/speed = 5.0
+shader_parameter/blur = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8s5bm"]
+shader = ExtResource("3_wwqby")
+shader_parameter/color_one = Color(0.819212, 0.50335, 0.214968, 1)
+shader_parameter/color_two = Color(0.795613, 0.479155, 0.124336, 1)
+shader_parameter/angle = 25.0
+shader_parameter/line_count = 500.0
+shader_parameter/speed = 5.0
+shader_parameter/blur = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fjkn5"]
+shader = ExtResource("5_222jg")
+shader_parameter/waveAmplitude = 0.01
+shader_parameter/correctVertex = true
+shader_parameter/waveFrequency = 21.364
+shader_parameter/verticalWave = true
+shader_parameter/keepTransparency = true
+shader_parameter/useTime = true
+shader_parameter/waveSpeed = 1.0
+shader_parameter/progress = 0.0
+shader_parameter/firstHalf = 0.5
+shader_parameter/secondHalf = 0.5
+shader_parameter/freezeFirstHalf = false
+shader_parameter/freezeSecondHalf = false
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -11,12 +48,247 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fgq37")
 
-[node name="Start" type="Button" parent="."]
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = -10
+material = SubResource("ShaderMaterial_2ie81")
 layout_mode = 0
-offset_left = 86.0
-offset_top = 120.0
-offset_right = 508.0
-offset_bottom = 184.0
+offset_left = -480.0
+offset_top = -427.0
+offset_right = 1145.0
+offset_bottom = 778.0
+
+[node name="ButtonBack" type="Sprite2D" parent="."]
+position = Vector2(288, 152)
+scale = Vector2(4, 1.5)
+texture = ExtResource("2_pcgo6")
+
+[node name="ButtonBack2" type="Sprite2D" parent="."]
+position = Vector2(288, 216)
+scale = Vector2(4, 1.5)
+texture = ExtResource("2_pcgo6")
+
+[node name="ButtonBack3" type="Sprite2D" parent="."]
+position = Vector2(288, 280)
+scale = Vector2(4, 1.5)
+texture = ExtResource("2_pcgo6")
+
+[node name="ButtonBack4" type="Sprite2D" parent="."]
+position = Vector2(288, 64)
+scale = Vector2(5.5, 3)
+texture = ExtResource("2_pcgo6")
+
+[node name="Start" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 160.0
+offset_top = 128.0
+offset_right = 416.0
+offset_bottom = 176.0
+theme_override_fonts/font = ExtResource("2_vmy28")
 text = "START"
+flat = true
+
+[node name="Start2" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 160.0
+offset_top = 192.0
+offset_right = 416.0
+offset_bottom = 240.0
+theme_override_fonts/font = ExtResource("2_vmy28")
+text = "TUTORIAL"
+flat = true
+
+[node name="Start3" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 160.0
+offset_top = 256.0
+offset_right = 416.0
+offset_bottom = 304.0
+theme_override_fonts/font = ExtResource("2_vmy28")
+text = "CREDITS"
+flat = true
+
+[node name="CREDITS" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 576.0
+offset_bottom = 324.0
+
+[node name="ButtonBack6" type="Sprite2D" parent="CREDITS"]
+z_index = 5
+position = Vector2(287, 33.5)
+scale = Vector2(1.9375, 1.09375)
+texture = ExtResource("2_pcgo6")
+
+[node name="ButtonBack7" type="Sprite2D" parent="CREDITS"]
+z_index = 5
+position = Vector2(296, 200)
+scale = Vector2(8, 2)
+texture = ExtResource("2_pcgo6")
+
+[node name="ButtonBack5" type="Sprite2D" parent="CREDITS"]
+z_index = 5
+position = Vector2(285, 108.75)
+scale = Vector2(3.625, 2.89063)
+texture = ExtResource("2_pcgo6")
+
+[node name="ColorRect" type="ColorRect" parent="CREDITS"]
+z_index = 4
+material = SubResource("ShaderMaterial_8s5bm")
+layout_mode = 0
+offset_left = -480.0
+offset_top = -427.0
+offset_right = 1145.0
+offset_bottom = 778.0
+
+[node name="Label2" type="Label" parent="CREDITS"]
+z_index = 5
+texture_filter = 1
+material = SubResource("ShaderMaterial_fjkn5")
+layout_mode = 0
+offset_left = -8.0
+offset_top = 24.0
+offset_right = 586.0
+offset_bottom = 78.0
+scale = Vector2(1.00078, 1.00536)
+theme_override_fonts/font = ExtResource("2_vmy28")
+theme_override_font_sizes/font_size = 24
+text = "CREDITS
+"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="CREDITS"]
+z_index = 5
+texture_filter = 1
+material = SubResource("ShaderMaterial_fjkn5")
+layout_mode = 0
+offset_left = 64.0
+offset_top = 48.0
+offset_right = 658.0
+offset_bottom = 180.0
+scale = Vector2(0.75, 0.75)
+theme_override_fonts/font = ExtResource("2_vmy28")
+theme_override_font_sizes/font_size = 24
+text = "
+Lead Programmer - Josh
+Starving Artist - Xavier
+VFX and Thinktank - Ian
+Music - Ian and Xavier"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="CREDITS"]
+z_index = 5
+texture_filter = 1
+material = SubResource("ShaderMaterial_fjkn5")
+layout_mode = 0
+offset_left = 48.0
+offset_top = 176.0
+offset_right = 912.0
+offset_bottom = 308.0
+scale = Vector2(0.573736, 0.576361)
+theme_override_fonts/font = ExtResource("2_vmy28")
+theme_override_font_sizes/font_size = 24
+text = "Line Shader: https://godotshaders.com/shader/scrolling-line-background/
+Wavy Shader: https://godotshaders.com/shader/wavy-texture/
+Main Font: https://www.dafont.com/bitmap.php
+"
+horizontal_alignment = 1
+
+[node name="ButtonBack3" type="Sprite2D" parent="CREDITS"]
+z_index = 5
+position = Vector2(288, 280)
+scale = Vector2(4, 1.5)
+texture = ExtResource("2_pcgo6")
+
+[node name="Start3" type="Button" parent="CREDITS"]
+z_index = 6
+texture_filter = 1
+layout_mode = 0
+offset_left = 160.0
+offset_top = 256.0
+offset_right = 416.0
+offset_bottom = 304.0
+theme_override_fonts/font = ExtResource("2_vmy28")
+text = "LEAVE"
+flat = true
+
+[node name="Label" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 256.0
+offset_right = 104.0
+offset_bottom = 296.0
+
+[node name="ButtonBack4" type="Sprite2D" parent="Label"]
+position = Vector2(11, 7)
+rotation = 0.261799
+scale = Vector2(2.14626, 1)
+texture = ExtResource("2_pcgo6")
+
+[node name="Label" type="Label" parent="Label"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -56.0
+offset_top = -16.0001
+offset_right = 197.0
+offset_bottom = 6.99994
+rotation = 0.261799
+scale = Vector2(0.569783, 0.620243)
+theme_override_fonts/font = ExtResource("2_vmy28")
+text = "A SILLYCAT PRODUCTION"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_fjkn5")
+layout_mode = 0
+offset_left = -8.0
+offset_top = 24.0
+offset_right = 586.0
+offset_bottom = 78.0
+theme_override_fonts/font = ExtResource("2_vmy28")
+theme_override_font_sizes/font_size = 24
+text = "MAGIC CATS ADVENTURE 
+IN DANGEROUS DUNGEONS
+ WHERE DEMONS LIE"
+horizontal_alignment = 1
+
+[node name="ButtonBack5" type="Sprite2D" parent="."]
+position = Vector2(500, 172)
+scale = Vector2(2.125, 1.75)
+texture = ExtResource("2_pcgo6")
+
+[node name="Label3" type="Label" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_fjkn5")
+layout_mode = 0
+offset_left = 320.0
+offset_top = 152.0
+offset_right = 914.0
+offset_bottom = 206.0
+scale = Vector2(0.607018, 0.607018)
+theme_override_fonts/font = ExtResource("2_vmy28")
+theme_override_font_sizes/font_size = 24
+text = "HIGHEST WAVE"
+horizontal_alignment = 1
+
+[node name="wavenum" type="Label" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_fjkn5")
+layout_mode = 0
+offset_left = 320.0
+offset_top = 176.0
+offset_right = 914.0
+offset_bottom = 230.0
+scale = Vector2(0.607018, 0.607018)
+theme_override_fonts/font = ExtResource("2_vmy28")
+theme_override_font_sizes/font_size = 24
+text = "24"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Start2" to="." method="_on_start_2_pressed"]
+[connection signal="pressed" from="Start3" to="." method="_on_start_3_pressed"]
+[connection signal="pressed" from="CREDITS/Start3" to="." method="_on_start_3_pressed"]

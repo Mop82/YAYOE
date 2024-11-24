@@ -47,6 +47,7 @@ func spawn():
 	$Enemy.hide()
 	$Boss.hide()
 	var sparkly = preload("res://Scenes/FX/Sparkly.tscn").instantiate()
-	add_child(sparkly)
+	get_parent().add_child(sparkly)
+	sparkly.global_position = global_position
 	await get_tree().create_timer(2).timeout
 	queue_free()

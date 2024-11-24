@@ -4,19 +4,24 @@
 [ext_resource type="Texture2D" uid="uid://3two6aeny2g7" path="res://Assets/Art/Bullet.png" id="2_q0vnb"]
 [ext_resource type="Script" path="res://Systems/HitHurtSystem/Hitbox.gd" id="3_j2yty"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrtan"]
+size = Vector2(2, 2)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_734rm"]
 size = Vector2(4, 4)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rrtan"]
-size = Vector2(5, 2)
-
 [node name="Bullet" type="CharacterBody2D"]
 collision_layer = 0
+collision_mask = 25
 script = ExtResource("1_0u4bc")
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(1.12152, 1.63631)
 texture = ExtResource("2_q0vnb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rrtan")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2
@@ -25,7 +30,3 @@ script = ExtResource("3_j2yty")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_734rm")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, 0)
-shape = SubResource("RectangleShape2D_rrtan")

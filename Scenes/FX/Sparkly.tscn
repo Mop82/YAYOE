@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwmwk2vavm00c"]
+[gd_scene load_steps=12 format=3 uid="uid://bwmwk2vavm00c"]
 
 [ext_resource type="Texture2D" uid="uid://dyww7lgirxd33" path="res://Assets/Art/dusteffect.png" id="1_a20cl"]
 [ext_resource type="Script" path="res://Scenes/FX/sparkly.gd" id="1_vg18y"]
@@ -8,14 +8,14 @@
 offsets = PackedFloat32Array(0, 0.45, 1)
 colors = PackedColorArray(0.144469, 0.000246237, 0.356503, 1, 0.78475, 0.126438, 0.427966, 1, 0.991539, 0.566585, 0.734337, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_pvsax"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0wwka"]
 gradient = SubResource("Gradient_mwh5w")
 
 [sub_resource type="Curve" id="Curve_xmk3u"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.209459, 0.637363), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_g666p"]
+[sub_resource type="CurveTexture" id="CurveTexture_cv1m0"]
 curve = SubResource("Curve_xmk3u")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ys6gi"]
@@ -27,8 +27,15 @@ initial_velocity_min = 1.0
 initial_velocity_max = 6.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.1
-scale_curve = SubResource("CurveTexture_g666p")
-color_ramp = SubResource("GradientTexture1D_pvsax")
+scale_curve = SubResource("CurveTexture_cv1m0")
+color_ramp = SubResource("GradientTexture1D_0wwka")
+
+[sub_resource type="Curve" id="Curve_44vgp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.209459, 0.637363), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_c44v5"]
+curve = SubResource("Curve_44vgp")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3uqhq"]
 particle_flag_disable_z = true
@@ -42,7 +49,7 @@ initial_velocity_max = 2.0
 gravity = Vector3(0, 0, 0)
 scale_min = 0.2
 scale_max = 0.3
-scale_curve = SubResource("CurveTexture_g666p")
+scale_curve = SubResource("CurveTexture_c44v5")
 
 [node name="Sparkly" type="Node2D"]
 z_index = 2

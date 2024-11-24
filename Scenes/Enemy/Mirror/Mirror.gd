@@ -1,8 +1,9 @@
 extends Enemy
 class_name Mirror
 
+@export var neuter = false
 
-var jump_time = 0.2
+var jump_time = 0.1
 var jump_speed = 35
 var can_jump = true
 
@@ -56,6 +57,9 @@ func movement(delta):
 
 func _on_timer_timeout() -> void:
 	$Timer.start(randf_range(0.25, 1))
+	
+	if neuter:
+		return
 	
 	var mirror_bullet = preload("res://Scenes/Enemy/Mirror/MirrorBullet.tscn").instantiate()
 	get_parent().add_child(mirror_bullet)

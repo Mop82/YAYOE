@@ -12,6 +12,15 @@ func _process(delta: float) -> void:
 	$Eye.rotation_degrees -= 2
 	
 
+func damage_anim():
+	var bloodstain = preload("res://Scenes/FX/bloodstain.tscn").instantiate()
+	get_parent().get_parent().add_child(bloodstain)
+	bloodstain.global_position = global_position
+	var scale_ = randf_range(3, 5)
+	bloodstain.scale = Vector2(scale_, scale_)
+	$SFX/Hurt.pitch_scale = randf_range(1.5, 2.5)
+	$SFX/Hurt.play()
+
 func fire_bullet():
 	$ROT.rotation_degrees = current_bullet_rot
 	var bullet = preload("res://Scenes/Enemy/Mirror/MirrorBullet.tscn").instantiate()

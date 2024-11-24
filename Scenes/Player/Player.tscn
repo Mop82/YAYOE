@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b5sfjoca4tcfr"]
+[gd_scene load_steps=16 format=3 uid="uid://b5sfjoca4tcfr"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_8aip1"]
 [ext_resource type="Texture2D" uid="uid://cod1gde42bs2n" path="res://Assets/Art/Cat.png" id="2_woa12"]
@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://dmdqvw1dmrqv7" path="res://Assets/UI/HealthFull.png" id="7_8emxi"]
 [ext_resource type="Texture2D" uid="uid://bax8p8xiuq8j0" path="res://Assets/UI/heatempty.png" id="8_evku7"]
 [ext_resource type="Texture2D" uid="uid://8d5xkgn8bxb4" path="res://Assets/UI/heatfull.png" id="9_icprg"]
+[ext_resource type="Texture2D" uid="uid://c71lfbne3vowp" path="res://Assets/Tiles/gunflash.png" id="10_fpgr0"]
+[ext_resource type="AudioStream" uid="uid://88eb2c6tyaot" path="res://Assets/SFX/sfxnormal/shotgun.wav" id="11_srqxd"]
+[ext_resource type="AudioStream" uid="uid://bjw67k64opabl" path="res://Assets/SFX/sfxnormal/hitHurt (1).wav" id="12_nj7di"]
+[ext_resource type="AudioStream" uid="uid://c17rgypgp6ah1" path="res://Assets/SFX/sfxnormal/explosion.wav" id="13_mf6x5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_41m2s"]
 size = Vector2(8, 8)
@@ -43,8 +47,16 @@ texture_filter = 1
 position = Vector2(7, 0)
 texture = ExtResource("4_a72bw")
 
+[node name="Gunflash" type="Sprite2D" parent="Gun"]
+visible = false
+texture_filter = 1
+position = Vector2(13, -1)
+rotation = 0.618741
+scale = Vector2(0.697204, 0.697204)
+texture = ExtResource("10_fpgr0")
+
 [node name="GunTip" type="Marker2D" parent="Gun"]
-position = Vector2(11, 1)
+position = Vector2(13, -1)
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 0
@@ -77,6 +89,26 @@ texture_progress = ExtResource("9_icprg")
 
 [node name="heatdown" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Rifle" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("11_srqxd")
+volume_db = -10.0
+pitch_scale = 2.0
+
+[node name="Heal" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("12_nj7di")
+volume_db = -10.0
+pitch_scale = 5.0
+
+[node name="Damage" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("12_nj7di")
+volume_db = -10.0
+pitch_scale = 0.7
+
+[node name="Death" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("13_mf6x5")
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="heatdown" to="." method="_on_heatdown_timeout"]

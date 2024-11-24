@@ -1,0 +1,86 @@
+[gd_scene load_steps=14 format=3 uid="uid://derwshxkuajwu"]
+
+[ext_resource type="Script" path="res://Scenes/FX/hit_effect.gd" id="1_fxi6j"]
+[ext_resource type="Texture2D" uid="uid://dyww7lgirxd33" path="res://Assets/Art/dusteffect.png" id="2_v85xn"]
+[ext_resource type="Texture2D" uid="uid://3two6aeny2g7" path="res://Assets/Art/Bullet.png" id="3_xslrm"]
+
+[sub_resource type="Gradient" id="Gradient_2pt5h"]
+offsets = PackedFloat32Array(0.0166667, 1)
+colors = PackedColorArray(0.205117, 0.205117, 0.205117, 1, 0.241156, 0.241156, 0.241156, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tk8fc"]
+gradient = SubResource("Gradient_2pt5h")
+
+[sub_resource type="Curve" id="Curve_44vgp"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.209459, 0.637363), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_1t816"]
+curve = SubResource("Curve_44vgp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_l6u6m"]
+particle_flag_disable_z = true
+angle_min = 1.07288e-05
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_curve = SubResource("CurveTexture_1t816")
+color_ramp = SubResource("GradientTexture1D_tk8fc")
+
+[sub_resource type="Curve" id="Curve_e8vt1"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.189189, 0.142857), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_nwnlc"]
+_data = [Vector2(0, 0.791209), 0.0, 0.0, 0, 0, Vector2(1, 0.835165), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_4h5xd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_ky6e8"]
+curve_x = SubResource("Curve_e8vt1")
+curve_y = SubResource("Curve_nwnlc")
+curve_z = SubResource("Curve_4h5xd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ngali"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+angle_min = 50.0
+angle_max = 50.0
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 2.0
+scale_curve = SubResource("CurveXYZTexture_ky6e8")
+
+[node name="HitEffect" type="Node2D"]
+script = ExtResource("1_fxi6j")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+texture_filter = 1
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_l6u6m")
+texture = ExtResource("2_v85xn")
+lifetime = 0.5
+one_shot = true
+speed_scale = 4.0
+explosiveness = 1.0
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+texture_filter = 1
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_ngali")
+texture = ExtResource("3_xslrm")
+lifetime = 0.5
+one_shot = true
+speed_scale = 4.0
+explosiveness = 1.0

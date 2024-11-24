@@ -1,14 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxmke54gwb45s"]
+[gd_scene load_steps=8 format=3 uid="uid://bxmke54gwb45s"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Turret/Turret.gd" id="1_jjcue"]
 [ext_resource type="Texture2D" uid="uid://crt85r6dlxb3i" path="res://Assets/Art/Goo.png" id="1_px317"]
 [ext_resource type="Script" path="res://Systems/HitHurtSystem/Hitbox.gd" id="3_c7uor"]
+[ext_resource type="AudioStream" uid="uid://ddbtd54c6ovvt" path="res://Assets/SFX/sfxnormal/hitHurt.wav" id="4_mg5m7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s13hg"]
 size = Vector2(8, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oh8nu"]
 size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcb3p"]
+size = Vector2(6, 6)
 
 [node name="Turret" type="CharacterBody2D"]
 script = ExtResource("1_jjcue")
@@ -19,7 +23,7 @@ texture_filter = 1
 texture = ExtResource("1_px317")
 
 [node name="Hurtbox" type="Area2D" parent="."]
-collision_layer = 0
+collision_layer = 16
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
@@ -34,6 +38,15 @@ script = ExtResource("3_c7uor")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("RectangleShape2D_oh8nu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gcb3p")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("4_mg5m7")
+pitch_scale = 2.0
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
