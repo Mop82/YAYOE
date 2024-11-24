@@ -43,6 +43,7 @@ func _dash():
 	is_dashing = false 
 
 func death():
+	level.normal_enemy_death()
 	queue_free()
 
 func _on_timer_timeout() -> void:

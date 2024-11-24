@@ -34,4 +34,5 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 	take_damage(area.damage)
 
 func death():
+	level.normal_enemy_death()
 	queue_free()

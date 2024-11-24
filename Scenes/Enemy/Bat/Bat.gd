@@ -23,4 +23,5 @@ func damage_anim():
 	$SFX/Hurt.play()
 
 func death():
+	level.normal_enemy_death()
 	queue_free()

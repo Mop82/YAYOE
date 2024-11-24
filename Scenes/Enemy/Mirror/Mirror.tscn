@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://m303mstp0jly"]
+[gd_scene load_steps=5 format=3 uid="uid://m303mstp0jly"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Mirror/Mirror.gd" id="1_36xp5"]
 [ext_resource type="Texture2D" uid="uid://clh7diir5eqa7" path="res://Assets/Art/Mirror.png" id="2_flirt"]
+[ext_resource type="AudioStream" uid="uid://bet6njd35xe6h" path="res://Assets/SFX/sfxnormal/wavy.wav" id="4_yaj64"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0prh0"]
 size = Vector2(8, 8)
@@ -21,5 +22,11 @@ shape = SubResource("RectangleShape2D_0prh0")
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Weird" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("4_yaj64")
+pitch_scale = 4.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -11,11 +11,14 @@ func _process(delta: float) -> void:
 
 func _on_start_pressed() -> void:
 	get_parent().start_pressed()
+	get_parent().play_click()
 	
 
 func _on_start_3_pressed() -> void:
 	$CREDITS.visible = !$CREDITS.visible
+	get_parent().play_click()
 
 
 func _on_start_2_pressed() -> void:
 	get_parent().tutorial_pressed()
+	get_parent().play_click()

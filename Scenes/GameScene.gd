@@ -25,4 +25,7 @@ func reset_menu():
 	$Menu.show()
 	$Level.get_child(0).queue_free()
 
+func play_click():
+	$Click.play()
+
 #Magic Cat Adventures in Dangerous Dungeons where Demons Lie

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dxhjr1ikrn4v4" path="res://Assets/Tiles/ButtonBack.png" id="2_pcgo6"]
 [ext_resource type="FontFile" uid="uid://c85riiss81f5c" path="res://Assets/Minecraft.ttf" id="2_vmy28"]
 [ext_resource type="Shader" path="res://Scenes/Game Scene.gdshader" id="3_wwqby"]
-[ext_resource type="Shader" path="res://Scenes/Menu/wavy.gdshader" id="5_222jg"]
+[ext_resource type="Shader" path="res://Scenes/wavy.gdshader" id="5_222jg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2ie81"]
 shader = ExtResource("3_wwqby")

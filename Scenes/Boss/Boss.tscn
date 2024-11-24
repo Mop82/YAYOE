@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://corvwiiqik6qw"]
+[gd_scene load_steps=9 format=3 uid="uid://corvwiiqik6qw"]
 
 [ext_resource type="Script" path="res://Scenes/Boss/boss.gd" id="1_jd26j"]
 [ext_resource type="Texture2D" uid="uid://do10n6fr0gurv" path="res://Assets/Art/Boss.png" id="2_54ou1"]
 [ext_resource type="Texture2D" uid="uid://c1avci878ecid" path="res://Assets/Art/eye.png" id="3_52tin"]
 [ext_resource type="Script" path="res://Systems/HitHurtSystem/Hurtbox.gd" id="4_2oi31"]
 [ext_resource type="AudioStream" uid="uid://ddbtd54c6ovvt" path="res://Assets/SFX/sfxnormal/hitHurt.wav" id="5_0266n"]
+[ext_resource type="AudioStream" uid="uid://bet6njd35xe6h" path="res://Assets/SFX/sfxnormal/wavy.wav" id="6_2rkr8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_em41g"]
 size = Vector2(8, 8)
@@ -50,6 +51,10 @@ shape = SubResource("RectangleShape2D_2jnoe")
 [node name="Hurt" type="AudioStreamPlayer2D" parent="SFX"]
 stream = ExtResource("5_0266n")
 pitch_scale = 2.0
+
+[node name="Weird" type="AudioStreamPlayer2D" parent="SFX"]
+stream = ExtResource("6_2rkr8")
+pitch_scale = 4.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

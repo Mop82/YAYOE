@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Systems/HitHurtSystem/Hitbox.gd" id="1_gqj7w"]
 [ext_resource type="Texture2D" uid="uid://c1jy6ntp73lvu" path="res://Assets/Art/Purpleitem.png" id="1_mrwpc"]
-[ext_resource type="Shader" path="res://Scenes/Menu/wavy.gdshader" id="2_v2gjj"]
+[ext_resource type="Shader" path="res://Scenes/wavy.gdshader" id="2_v2gjj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ktnq2"]
 shader = ExtResource("2_v2gjj")

@@ -5,6 +5,7 @@ class_name Enemy
 @export var speed = 10.0
 
 @onready var player = get_tree().get_first_node_in_group("Player")
+@onready var level = get_tree().get_first_node_in_group("Level")
 
 func take_damage(damage):
 	health -= damage

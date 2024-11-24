@@ -61,6 +61,9 @@ func _on_timer_timeout() -> void:
 	if neuter:
 		return
 	
+	$SFX/Weird.pitch_scale = randf_range(2, 2.5)
+	$SFX/Weird.play()
+	
 	var mirror_bullet = preload("res://Scenes/Enemy/Mirror/MirrorBullet.tscn").instantiate()
 	get_parent().add_child(mirror_bullet)
 	mirror_bullet.global_position = global_position

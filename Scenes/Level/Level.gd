@@ -2,7 +2,7 @@ extends Node2D
 
 var taken_positions = []
 
-var wave_num = 0
+var wave_num = 4
 
 var wave_started = false
 
@@ -33,12 +33,16 @@ func start_wave():
 	for i : EnemySpawner in $Spawns/Pillars.get_children():
 		await get_tree().create_timer(randf_range(0, 0.25)).timeout
 		i.spawn()
+		$Spawn.pitch_scale = randf_range(0.8, 1.6)
+		$Spawn.play()
 	
 	await get_tree().create_timer(2).timeout
 	
 	for i : EnemySpawner in $Spawns/Enemies.get_children():
 		await get_tree().create_timer(randf_range(0, 0.25)).timeout
 		i.spawn()
+		$Spawn.pitch_scale = randf_range(0.8, 1.6)
+		$Spawn.play()
 	
 	wave_started = false
 
@@ -136,3 +140,11 @@ func _process(delta: float) -> void:
 			if i.get_class() == "Marker2D":
 				i.spawn()
 		start_wave()
+
+func normal_enemy_death():
+	$Death.pitch_scale = randf_range(0.6, 1.2)
+	$Death.play()
+
+func virtue_enemy_death():
+	$Virtue.pitch_scale = randf_range(0.6, 1.2)
+	$Virtue.play()

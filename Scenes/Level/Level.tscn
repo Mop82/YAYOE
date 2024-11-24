@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dxwioeyu0rpx1"]
+[gd_scene load_steps=19 format=4 uid="uid://dxwioeyu0rpx1"]
 
 [ext_resource type="Script" path="res://Scenes/Level/Level.gd" id="1_ywd7o"]
 [ext_resource type="Texture2D" uid="uid://cgcb6tuy7xq48" path="res://Assets/Tiles/Checker.png" id="2_2yjxb"]
@@ -8,9 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://m303mstp0jly" path="res://Scenes/Enemy/Mirror/Mirror.tscn" id="5_ji50a"]
 [ext_resource type="PackedScene" uid="uid://celx54r667yun" path="res://Scenes/FX/bloodstain.tscn" id="6_fu5we"]
 [ext_resource type="Texture2D" uid="uid://dxhjr1ikrn4v4" path="res://Assets/Tiles/ButtonBack.png" id="8_6xg8i"]
-[ext_resource type="Shader" path="res://Scenes/Menu/wavy.gdshader" id="9_1rs7h"]
+[ext_resource type="Shader" path="res://Scenes/wavy.gdshader" id="9_1rs7h"]
 [ext_resource type="FontFile" uid="uid://c85riiss81f5c" path="res://Assets/Minecraft.ttf" id="10_nwra4"]
 [ext_resource type="AudioStream" uid="uid://c17rgypgp6ah1" path="res://Assets/SFX/sfxnormal/explosion.wav" id="11_d4hes"]
+[ext_resource type="AudioStream" uid="uid://cjpbq3hxiv74h" path="res://Assets/SFX/sfxnormal/download.wav" id="12_68y5f"]
+[ext_resource type="AudioStream" uid="uid://dv4g3s2tphj3a" path="res://Assets/SFX/sfxnormal/squish.wav" id="13_4kitt"]
+[ext_resource type="AudioStream" uid="uid://brsxm1ljplito" path="res://Assets/SFX/sfxnormal/virtue.wav" id="14_xl5eh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d3ck4"]
 texture = ExtResource("2_2yjxb")
@@ -53,7 +56,7 @@ shader_parameter/secondHalf = 0.5
 shader_parameter/freezeFirstHalf = false
 shader_parameter/freezeSecondHalf = false
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node2D" groups=["Level"]]
 script = ExtResource("1_ywd7o")
 
 [node name="Level" type="Node2D" parent="."]
@@ -137,3 +140,13 @@ horizontal_alignment = 1
 [node name="Explode" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_d4hes")
 volume_db = 5.0
+
+[node name="Spawn" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_68y5f")
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_4kitt")
+volume_db = -5.0
+
+[node name="Virtue" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_xl5eh")

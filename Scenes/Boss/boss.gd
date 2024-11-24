@@ -31,10 +31,13 @@ func fire_bullet():
 
 func _on_timer_timeout() -> void:
 	$Timer.start()
+	$SFX/Weird.pitch_scale = randf_range(3.5, 4.5)
+	$SFX/Weird.play()
 	fire_bullet()
 
 
 func death():
+	level.virtue_enemy_death()
 	queue_free()
 
 func _on_hurtbox_area_entered(area: Area2D) -> void:

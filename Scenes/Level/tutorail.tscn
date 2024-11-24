@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cgcb6tuy7xq48" path="res://Assets/Tiles/Checker.png" id="2_43qn0"]
 [ext_resource type="Script" path="res://Scenes/Level/camera_2d.gd" id="2_t4gnf"]
-[ext_resource type="Shader" path="res://Scenes/Menu/wavy.gdshader" id="3_4enur"]
+[ext_resource type="Shader" path="res://Scenes/wavy.gdshader" id="3_4enur"]
 [ext_resource type="PackedScene" uid="uid://b5sfjoca4tcfr" path="res://Scenes/Player/Player.tscn" id="3_n1o7m"]
 [ext_resource type="FontFile" uid="uid://c85riiss81f5c" path="res://Assets/Minecraft.ttf" id="4_phosh"]
 [ext_resource type="PackedScene" uid="uid://m303mstp0jly" path="res://Scenes/Enemy/Mirror/Mirror.tscn" id="4_ug3c6"]
@@ -50,7 +50,7 @@ shader_parameter/line_count = 500.0
 shader_parameter/speed = 5.0
 shader_parameter/blur = null
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node2D" groups=["Level"]]
 
 [node name="Level" type="Node2D" parent="."]
 
