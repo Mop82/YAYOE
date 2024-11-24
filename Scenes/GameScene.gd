@@ -4,6 +4,8 @@ var highest_wave = 0
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	var child_pick = randi_range(0, 2)
+	$Music.get_child(child_pick).play()
 
 func start_pressed():
 	var new_level = preload("res://Scenes/Level/Level.tscn").instantiate()
@@ -29,3 +31,15 @@ func play_click():
 	$Click.play()
 
 #Magic Cat Adventures in Dangerous Dungeons where Demons Lie
+
+
+func _on_music_1_finished() -> void:
+	$Music/Music2.play()
+
+
+func _on_music_2_finished() -> void:
+	$Music/Music3.play()
+
+
+func _on_music_3_finished() -> void:
+	$Music/Music1.play()

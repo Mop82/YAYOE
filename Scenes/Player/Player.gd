@@ -140,7 +140,7 @@ func shoot():
 
 func rifle():
 	
-	shoot_cooldown = 0.15
+	shoot_cooldown = 0.1
 	bullets_shot = 1
 	damage_per_bullet = 1
 	spread = 10
@@ -166,7 +166,7 @@ func shotgun():
 	shoot_cooldown = 0.5
 	bullets_shot = 5
 	damage_per_bullet = 1
-	spread = 15
+	spread = 20
 	bullet_velocity = 150
 	destroy_time = 10
 	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dxwioeyu0rpx1"]
+[gd_scene load_steps=18 format=4 uid="uid://dxwioeyu0rpx1"]
 
 [ext_resource type="Script" path="res://Scenes/Level/Level.gd" id="1_ywd7o"]
 [ext_resource type="Texture2D" uid="uid://cgcb6tuy7xq48" path="res://Assets/Tiles/Checker.png" id="2_2yjxb"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://b5sfjoca4tcfr" path="res://Scenes/Player/Player.tscn" id="3_7p1v3"]
 [ext_resource type="Shader" path="res://Scenes/Game Scene.gdshader" id="5_4dhxr"]
 [ext_resource type="PackedScene" uid="uid://m303mstp0jly" path="res://Scenes/Enemy/Mirror/Mirror.tscn" id="5_ji50a"]
-[ext_resource type="PackedScene" uid="uid://celx54r667yun" path="res://Scenes/FX/bloodstain.tscn" id="6_fu5we"]
 [ext_resource type="Texture2D" uid="uid://dxhjr1ikrn4v4" path="res://Assets/Tiles/ButtonBack.png" id="8_6xg8i"]
 [ext_resource type="Shader" path="res://Scenes/wavy.gdshader" id="9_1rs7h"]
 [ext_resource type="FontFile" uid="uid://c85riiss81f5c" path="res://Assets/Minecraft.ttf" id="10_nwra4"]
@@ -94,9 +93,6 @@ collision_mask = 9
 
 [node name="Mirror" parent="." instance=ExtResource("5_ji50a")]
 position = Vector2(112, 112)
-
-[node name="Bloodstain" parent="." instance=ExtResource("6_fu5we")]
-position = Vector2(-1, 45)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -10

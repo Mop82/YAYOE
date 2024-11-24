@@ -2,7 +2,7 @@ extends Node2D
 
 var taken_positions = []
 
-var wave_num = 4
+var wave_num = 0
 
 var wave_started = false
 

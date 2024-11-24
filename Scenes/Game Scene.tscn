@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7ltx0ks3b7nf"]
+[gd_scene load_steps=8 format=3 uid="uid://b7ltx0ks3b7nf"]
 
 [ext_resource type="Script" path="res://Scenes/GameScene.gd" id="1_y3nhx"]
 [ext_resource type="PackedScene" uid="uid://cd1oko7s43fta" path="res://Scenes/Menu/Menu.tscn" id="2_bwclg"]
 [ext_resource type="Texture2D" uid="uid://bhql3ofxxya4m" path="res://Assets/Art/Crosshair.png" id="3_28xia"]
 [ext_resource type="AudioStream" uid="uid://c1w4o0btl36rl" path="res://Assets/SFX/sfxnormal/click.wav" id="4_t8yy6"]
+[ext_resource type="AudioStream" uid="uid://cf2tm7qcgly25" path="res://Assets/SFX/music/boss1.2.wav" id="5_ubnnq"]
+[ext_resource type="AudioStream" uid="uid://c7f67jcdoquqg" path="res://Assets/SFX/music/MainTheme.wav" id="5_uqmuc"]
+[ext_resource type="AudioStream" uid="uid://cb2x7is5nn0v7" path="res://Assets/SFX/music/boss2.final.wav" id="7_c60ts"]
 
 [node name="Game Scene" type="Node2D" groups=["Game"]]
 script = ExtResource("1_y3nhx")
@@ -20,3 +23,21 @@ texture = ExtResource("3_28xia")
 
 [node name="Click" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_t8yy6")
+
+[node name="Music" type="Node2D" parent="."]
+
+[node name="Music1" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("5_uqmuc")
+volume_db = 10.0
+
+[node name="Music2" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("5_ubnnq")
+volume_db = 15.0
+
+[node name="Music3" type="AudioStreamPlayer2D" parent="Music"]
+stream = ExtResource("7_c60ts")
+volume_db = 10.0
+
+[connection signal="finished" from="Music/Music1" to="." method="_on_music_1_finished"]
+[connection signal="finished" from="Music/Music2" to="." method="_on_music_2_finished"]
+[connection signal="finished" from="Music/Music3" to="." method="_on_music_3_finished"]
