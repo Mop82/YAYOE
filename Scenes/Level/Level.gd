@@ -1,28 +1,23 @@
 extends Node2D
 
-var levels = [preload("res://Scenes/Level/LevelArrangements/LevelArrangementBase.tscn")]
+var taken_positions = []
 
-func reset_picking():
-	$PickingMode.show()
-	$Camera2D.zoom = Vector2(1, 1)
-	for i in $PickingMode.get_children():
-		var pick = levels.pick_random()
-		i.add_child(pick.instantiate())
+func start_wave():
+	taken_positions.clear()
+	spawn_pillars(10)
 
-func _on_button_1_pressed() -> void:
-	picked(0)
-
-func _on_button_2_pressed() -> void:
-	picked(1)
-
-func _on_button_3_pressed() -> void:
-	picked(2)
-
-func picked(button : int):
-	$Level.add_child($PickingMode.get_child(button).get_child(0).duplicate())
-	$PickingMode.hide()
-	clear_picking()
-
-func clear_picking():
-	for i in $PickingMode.get_children():
-		i.get_child(0).queue_free()
+func spawn_pillars(amt):
+	var attempts = 10
+	
+	for i in amt:
+		for t in attempts:
+			var x = randi_range(1, 16)
+			var y = randi_range(1, 16)
+			if taken_positions.find(Vector2(x, y)) == null:
+				var pillar = preload("res://Systems/EnemySpawner/EnemySpawner.tscn").instantiate()
+				pillar.global_position = Vector2(x, y) * 8
+				pillar.spawn_item = preload("res://Scenes/Objects/Pillar/Pillar.tscn")
+				pillar.type = pillar.types.object
+				pillar.update_icon()
+				taken_positions.append(Vector2(x, y))
+				break

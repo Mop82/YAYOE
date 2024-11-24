@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5sfjoca4tcfr"]
+[gd_scene load_steps=6 format=3 uid="uid://b5sfjoca4tcfr"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_8aip1"]
-[ext_resource type="Texture2D" uid="uid://dfjiv8n7vunfd" path="res://icon.svg" id="2_ja5vm"]
+[ext_resource type="Texture2D" uid="uid://cod1gde42bs2n" path="res://Assets/Art/Cat.png" id="2_woa12"]
 [ext_resource type="Texture2D" uid="uid://ysxyl6quqb43" path="res://Assets/UI/GunView.png" id="3_yij3b"]
+[ext_resource type="Texture2D" uid="uid://c2cj0h3apwyko" path="res://Assets/Art/Gun.png" id="4_a72bw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_41m2s"]
 size = Vector2(8, 8)
@@ -11,9 +12,10 @@ size = Vector2(8, 8)
 script = ExtResource("1_8aip1")
 
 [node name="Icon" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(0, 3.8147e-06)
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_ja5vm")
+texture = ExtResource("2_woa12")
+flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_41m2s")
@@ -28,9 +30,9 @@ rotation = -3.14159
 texture = ExtResource("3_yij3b")
 
 [node name="Gun" type="Sprite2D" parent="Gun"]
-position = Vector2(1.5, -2.98023e-08)
-scale = Vector2(0.0390625, 0.015625)
-texture = ExtResource("2_ja5vm")
+texture_filter = 1
+position = Vector2(7, 0)
+texture = ExtResource("4_a72bw")
 
 [node name="GunTip" type="Marker2D" parent="Gun"]
-position = Vector2(4, 0)
+position = Vector2(11, 1)

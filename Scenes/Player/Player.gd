@@ -17,16 +17,22 @@ var can_shoot = true
 @onready var gun = $Gun
 @onready var gun_tip = $Gun/GunTip
 
+var time = 0.0
+
 func _ready() -> void:
 	target_position = global_position
 
 func _physics_process(delta: float) -> void:
+	time += delta
+	
+	$Icon.rotation_degrees = sin(time * 2) * 10
 	movement(delta)
 	mouse_movement(delta)
 	move_and_slide()
 	
 	if Input.is_action_pressed("LeftClick"):
 		shoot()
+		
 
 func movement(delta):
 	
@@ -58,6 +64,12 @@ func movement(delta):
 
 func mouse_movement(delta):
 	$Gun.look_at(get_global_mouse_position())
+	if get_global_mouse_position().x > global_position.x:
+		$Icon.flip_h = true
+		$Gun/Gun.flip_v = false
+	else:
+		$Icon.flip_h = false
+		$Gun/Gun.flip_v = true
 
 func shoot():
 	if can_shoot == false:

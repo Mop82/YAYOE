@@ -4,13 +4,18 @@ class_name EnemySpawner
 
 @export var spawn_item : PackedScene
 
-enum types {enemy, trap, boss}
+enum types {enemy, object, boss}
 
 @export var type : types
 @export var update = false
+@export var spawn_on_ready = false
 
 var time = 0.0
 var speed = randf_range(0.5, 1.5)
+
+func _ready() -> void:
+	if spawn_on_ready:
+		spawn()
 
 func _process(delta: float) -> void:
 	time += delta
@@ -21,7 +26,7 @@ func _process(delta: float) -> void:
 	$Boss.rotation_degrees = sin(time * speed) * 15
 
 func update_icon():
-	if type == types.trap:
+	if type == types.object:
 		$Trap.show()
 		$Enemy.hide()
 		$Boss.hide()

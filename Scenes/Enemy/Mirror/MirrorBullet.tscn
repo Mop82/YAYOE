@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjqm41n6q80s4"]
+
+[ext_resource type="Script" path="res://Scenes/Enemy/Mirror/mirror_bullet.gd" id="1_pggyi"]
+[ext_resource type="Script" path="res://Systems/HitHurtSystem/Hitbox.gd" id="2_njlxc"]
+[ext_resource type="Texture2D" uid="uid://byclndnuglo2w" path="res://Assets/Art/MirrorBullet.png" id="3_osm1q"]
+
+[node name="MirrorBullet" type="CharacterBody2D"]
+script = ExtResource("1_pggyi")
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("2_njlxc")
+
+[node name="MirrorBullet" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_osm1q")

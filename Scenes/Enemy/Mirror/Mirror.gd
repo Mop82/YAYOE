@@ -8,10 +8,19 @@ var can_jump = true
 
 var target_position = Vector2.ZERO
 
+var time = 0.0
+var other_time = 0.0
+
 func _ready() -> void:
 	target_position = global_position
 
 func _physics_process(delta: float) -> void:
+	time += delta
+	rotation_degrees = sin(time * 4) * 15
+	other_time += delta
+	#modulate = Color().from_hsv(1, other_time, 1)
+	if other_time > 1:
+		other_time = 0.0
 	movement(delta)
 	move_and_slide()
 
@@ -42,3 +51,12 @@ func movement(delta):
 		can_jump = false
 		await get_tree().create_timer(jump_time).timeout
 		can_jump = true
+
+
+func _on_timer_timeout() -> void:
+	$Timer.start(randf_range(1, 3))
+	
+	var mirror_bullet = preload("res://Scenes/Enemy/Mirror/MirrorBullet.tscn").instantiate()
+	get_parent().add_child(mirror_bullet)
+	mirror_bullet.global_position = global_position
+	mirror_bullet.look_at(player.global_position)

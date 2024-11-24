@@ -10,6 +10,7 @@
 script = ExtResource("1_kxm68")
 spawn_item = ExtResource("2_wx7qt")
 type = 2
+spawn_on_ready = null
 
 [node name="Trap" type="Node2D" parent="."]
 visible = false
@@ -20,14 +21,14 @@ texture = ExtResource("2_0ainb")
 
 [node name="Enemy" type="Node2D" parent="."]
 visible = false
-rotation = -0.158763
+rotation = -0.245267
 
 [node name="Enemy" type="Sprite2D" parent="Enemy"]
 texture_filter = 1
 texture = ExtResource("3_vrh2w")
 
 [node name="Boss" type="Node2D" parent="."]
-rotation = -0.158763
+rotation = -0.245267
 
 [node name="Boss" type="Sprite2D" parent="Boss"]
 texture_filter = 1

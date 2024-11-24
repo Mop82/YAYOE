@@ -1,12 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://m303mstp0jly"]
+[gd_scene load_steps=4 format=3 uid="uid://m303mstp0jly"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Mirror/Mirror.gd" id="1_36xp5"]
-[ext_resource type="Texture2D" uid="uid://dfjiv8n7vunfd" path="res://icon.svg" id="2_k41f4"]
+[ext_resource type="Texture2D" uid="uid://clh7diir5eqa7" path="res://Assets/Art/Mirror.png" id="2_flirt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0prh0"]
+size = Vector2(8, 8)
 
 [node name="Mirror" type="CharacterBody2D"]
 script = ExtResource("1_36xp5")
 
 [node name="Icon" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(0, 3.8147e-06)
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_k41f4")
+texture = ExtResource("2_flirt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0prh0")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
