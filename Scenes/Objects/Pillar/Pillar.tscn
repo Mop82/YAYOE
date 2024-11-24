@@ -1,3 +1,19 @@
-[gd_scene format=3 uid="uid://ws8a6jpo54p5"]
+[gd_scene load_steps=4 format=3 uid="uid://ws8a6jpo54p5"]
+
+[ext_resource type="Texture2D" uid="uid://b6tlhec254ekb" path="res://Assets/Art/Pillar.png" id="1_a2fgb"]
+[ext_resource type="Script" path="res://Scenes/Objects/Pillar/pillar.gd" id="1_w2lnd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rygca"]
+size = Vector2(7, 7)
 
 [node name="Pillar" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_w2lnd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rygca")
+
+[node name="Pillar" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_a2fgb")

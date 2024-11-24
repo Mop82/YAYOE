@@ -1,8 +1,9 @@
-extends CharacterBody2D
+extends Enemy
 
-var bullet_velocity = 25
+var bullet_velocity = 10
 var damage = 1
 var destroy_time = 10
+
 var time = 0.0
 
 func _ready() -> void:
@@ -12,11 +13,16 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	time += delta
-	if time > 255:
-		time = 0.0
-	
-	$MirrorBullet.rotation_degrees += 15
 	
 	velocity = Vector2(1 * bullet_velocity, 0).rotated(rotation)
 	
+	look_at(player.global_position)
+	
 	move_and_slide()
+	
+
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	take_damage(area.damage)
+
+func death():
+	queue_free()

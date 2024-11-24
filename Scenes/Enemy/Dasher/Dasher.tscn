@@ -1,18 +1,50 @@
-[gd_scene load_steps=3 format=3 uid="uid://crpmhwwc3l0b3"]
+[gd_scene load_steps=8 format=3 uid="uid://crpmhwwc3l0b3"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Dasher/dasher.gd" id="1_wfl06"]
-[ext_resource type="Texture2D" uid="uid://dfjiv8n7vunfd" path="res://icon.svg" id="2_16rey"]
+[ext_resource type="Texture2D" uid="uid://m864rt0y28gt" path="res://Assets/Art/Skull.png" id="2_u3hxa"]
+[ext_resource type="Script" path="res://Systems/HitHurtSystem/Hurtbox.gd" id="3_it12a"]
+[ext_resource type="Script" path="res://Systems/HitHurtSystem/Hitbox.gd" id="4_4874w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ygipc"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j4kxw"]
+size = Vector2(6, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7puss"]
+size = Vector2(8, 8)
 
 [node name="Dasher" type="CharacterBody2D"]
+collision_layer = 0
 script = ExtResource("1_wfl06")
+health = 6
+speed = 6.0
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
-autostart = true
 
 [node name="Icon" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("2_16rey")
+texture_filter = 1
+texture = ExtResource("2_u3hxa")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_it12a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ygipc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_j4kxw")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("4_4874w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_7puss")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

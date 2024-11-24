@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://brllde5jousbu"]
+[gd_scene load_steps=6 format=3 uid="uid://brllde5jousbu"]
 
 [ext_resource type="Script" path="res://Scenes/Enemy/Bat/Bat.gd" id="1_kofug"]
 [ext_resource type="Texture2D" uid="uid://dovyxnge7u710" path="res://Assets/Art/Bat.png" id="2_t7dbt"]
 [ext_resource type="Script" path="res://Systems/HitHurtSystem/Hurtbox.gd" id="3_34op8"]
+[ext_resource type="Script" path="res://Systems/HitHurtSystem/Hitbox.gd" id="4_h8j4b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmc0n"]
 size = Vector2(8, 8)
@@ -18,11 +19,19 @@ texture_filter = 1
 texture = ExtResource("2_t7dbt")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 4
+collision_layer = 0
 collision_mask = 2
 script = ExtResource("3_34op8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_gmc0n")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("4_h8j4b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
 shape = SubResource("RectangleShape2D_gmc0n")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

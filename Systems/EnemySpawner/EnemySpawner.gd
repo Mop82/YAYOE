@@ -14,7 +14,7 @@ var time = 0.0
 var speed = randf_range(0.5, 1.5)
 
 func _ready() -> void:
-	if spawn_on_ready:
+	if spawn_on_ready and !Engine.is_editor_hint():
 		spawn()
 
 func _process(delta: float) -> void:
@@ -43,4 +43,10 @@ func spawn():
 	var item = spawn_item.instantiate()
 	item.global_position = global_position
 	get_parent().add_child(item)
+	$Trap.hide()
+	$Enemy.hide()
+	$Boss.hide()
+	var sparkly = preload("res://Scenes/FX/Sparkly.tscn").instantiate()
+	add_child(sparkly)
+	await get_tree().create_timer(2).timeout
 	queue_free()

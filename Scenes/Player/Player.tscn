@@ -1,14 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5sfjoca4tcfr"]
+[gd_scene load_steps=12 format=3 uid="uid://b5sfjoca4tcfr"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.gd" id="1_8aip1"]
 [ext_resource type="Texture2D" uid="uid://cod1gde42bs2n" path="res://Assets/Art/Cat.png" id="2_woa12"]
 [ext_resource type="Texture2D" uid="uid://ysxyl6quqb43" path="res://Assets/UI/GunView.png" id="3_yij3b"]
 [ext_resource type="Texture2D" uid="uid://c2cj0h3apwyko" path="res://Assets/Art/Gun.png" id="4_a72bw"]
+[ext_resource type="Script" path="res://Systems/HitHurtSystem/Hurtbox.gd" id="6_kyg0s"]
+[ext_resource type="Texture2D" uid="uid://bt3qpbku3k5xh" path="res://Assets/UI/healthempty.png" id="6_sxosq"]
+[ext_resource type="Texture2D" uid="uid://dmdqvw1dmrqv7" path="res://Assets/UI/HealthFull.png" id="7_8emxi"]
+[ext_resource type="Texture2D" uid="uid://bax8p8xiuq8j0" path="res://Assets/UI/heatempty.png" id="8_evku7"]
+[ext_resource type="Texture2D" uid="uid://8d5xkgn8bxb4" path="res://Assets/UI/heatfull.png" id="9_icprg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_41m2s"]
 size = Vector2(8, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yc58q"]
+size = Vector2(6, 6)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 0
 script = ExtResource("1_8aip1")
 
 [node name="Icon" type="Sprite2D" parent="."]
@@ -36,3 +45,38 @@ texture = ExtResource("4_a72bw")
 
 [node name="GunTip" type="Marker2D" parent="Gun"]
 position = Vector2(11, 1)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("6_kyg0s")
+invinc_time = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_yc58q")
+
+[node name="Health" type="TextureProgressBar" parent="."]
+texture_filter = 1
+offset_left = -4.0
+offset_top = -13.0
+offset_right = 36.0
+offset_bottom = 27.0
+max_value = 10.0
+value = 5.0
+texture_under = ExtResource("6_sxosq")
+texture_progress = ExtResource("7_8emxi")
+
+[node name="heat" type="TextureProgressBar" parent="."]
+texture_filter = 1
+offset_left = -4.0
+offset_top = 5.0
+offset_right = 36.0
+offset_bottom = 45.0
+texture_under = ExtResource("8_evku7")
+texture_progress = ExtResource("9_icprg")
+
+[node name="heatdown" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="heatdown" to="." method="_on_heatdown_timeout"]

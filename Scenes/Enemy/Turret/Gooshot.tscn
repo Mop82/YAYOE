@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgmddqntdcahw"]
+
+[ext_resource type="Script" path="res://Scenes/Enemy/Turret/gooshot.gd" id="1_lndoo"]
+[ext_resource type="Texture2D" uid="uid://cwmj81ic1n7uo" path="res://Assets/Art/Gooshot.png" id="2_ukljj"]
+[ext_resource type="Script" path="res://Systems/HitHurtSystem/Hitbox.gd" id="3_jaor8"]
+[ext_resource type="Script" path="res://Systems/HitHurtSystem/Hurtbox.gd" id="4_id71s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_380ya"]
+size = Vector2(4, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3djhb"]
+size = Vector2(4, 4)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_lndoo")
+
+[node name="Gooshot" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_ukljj")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_id71s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_380ya")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("3_jaor8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_3djhb")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

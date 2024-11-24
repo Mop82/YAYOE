@@ -23,6 +23,7 @@ func _physics_process(delta: float) -> void:
 		other_time = 0.0
 	movement(delta)
 	move_and_slide()
+	
 
 func movement(delta):
 	
@@ -54,7 +55,7 @@ func movement(delta):
 
 
 func _on_timer_timeout() -> void:
-	$Timer.start(randf_range(1, 3))
+	$Timer.start(randf_range(0.25, 1))
 	
 	var mirror_bullet = preload("res://Scenes/Enemy/Mirror/MirrorBullet.tscn").instantiate()
 	get_parent().add_child(mirror_bullet)
